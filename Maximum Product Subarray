@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int maxProduct(vector<int>& nums) {
+        int ans=INT_MIN;
+        int n=nums.size();
+        int pre=1,suf=1;
+        for(int i=0;i<n;i++){
+            if(pre==0)
+                pre=1;
+            if(suf==0)
+                suf=1;
+            pre=pre*nums[i];
+            suf=suf*nums[n-i-1];
+            ans=max(ans,max(pre,suf));
+        }
+        return ans;
+    }
+};
+
+
+//In this case, we will divide the array into 3 different subarrays based on the 0’s locations. So, the subarrays will be {-2, 3, 4, -1}, {-2, 3, 1, 4}, and {4, 6, -1, 4}.
+//In these 3 subarrays, we will apply the logic discussed in case 3. We will get 3 different answers for 3 different subarrays.
+//The maximum one among those 3 answers will be the final answer.
