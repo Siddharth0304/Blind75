@@ -1,0 +1,29 @@
+class Solution {
+public:
+    vector<int> spiralOrder(vector<vector<int>>& matrix) {
+        int si=matrix.size()*matrix[0].size();
+        vector<int> vec;
+        int i1=0,i2=matrix.size()-1,j1=matrix[0].size()-1,j2=0;
+        while(i1<=i2 && j2<=j1){
+            for(int x=i1;x<=j1;x++)
+                vec.push_back(matrix[i1][x]);
+            i1++;
+            for(int x=i1;x<=i2;x++)
+                vec.push_back(matrix[x][j1]);
+            j1--;
+            for(int x=j1;x>=j2;x--)
+                vec.push_back(matrix[i2][x]);
+            i2--;
+            for(int x=i2;x>=i1;x--)
+                vec.push_back(matrix[x][j2]);
+            j2++;
+        }
+        for(int x=vec.size();x>si;x--){
+            vec.pop_back();
+        }
+        return vec;
+        
+    }
+};
+// So the simple approach is that first we print top-most row elements, then the right-most column elements, then the bottom-most row elements in reverse order and left-most row elements in reverse order.
+// Then we reduce the size of matrix and then use the same steps. 
